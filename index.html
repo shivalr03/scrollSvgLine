@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>svg line draw</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div class="line-container">
+    <svg  viewBox="0 0 77 525" fill="none" preserveAspectRatio="xMidYMax meet">
+      <path d="M37.5 0.5V340.5C25.5 349.167 1.9 366.9 3.5 368.5C5.1 370.1 4.16667 353.5 3.5 345L26 364.5C30.6667 367.167 41.2 372.2 46 371C52 369.5 66 362 73 355C80 348 47.5 339 44.5 340.5C42.1 341.7 43.5 359.667 44.5 368.5V466.5L37.5 468L35.5 476.5V487.5C30.3333 489 20.6 493.6 23 500C20.1667 506.5 15.2 519.7 18 520.5C20.8 521.3 41.1667 520.833 51 520.5V487.5C54 486.833 59.6 484.5 58 480.5C56.4 476.5 55.6667 474.167 55.5 473.5L46 472L42 465L35.5 470L34 485.5C27.9498 489 16.4796 496.6 19 499C22.1505 502 17 525.5 13.5 522C10 518.5 3.5 523.5 3.5 509.5C3.5 495.5 13.5 507.5 13.5 497.5C13.5 489.5 9.83333 486.167 8 485.5L5.5 483.5" stroke="#FF0000" stroke-width="1"/>
+      </svg>      
+  </div>
+  <section class="one">
+    <h1 class="scroll"data-rate=".4" data-direction="vertical" >Ocean stuff</h1>
+  </section>
+  <section class="two">
+    <h1 class="scroll"data-rate=".2" data-direction="vertical" >Land stuff</h1>
+    <p>big watermark</p>
+  </section>
+  <script>
+    let path = document.querySelector('path');
+    let pathLength = path.getTotalLength();
+    
+    path.style.strokeDasharray= pathLength + ' ' + pathLength;
+    path.style.strokeDashoffset = pathLength;
+
+    window.addEventListener('scroll', () => {
+      //what % down is it?
+      // debugger;
+      let scrollPercentage = (document.documentElement.scrollTop + document.body.scrollTop) / (document.documentElement.scrollHeight - document.documentElement.clientHeight);
+
+      //length to offset the dashes
+      let drawLength = pathLength * scrollPercentage;
+
+      //Draw in reverse 
+      path.style.strokeDashoffset = pathLength - drawLength;
+    
+
+
+
+      const target = document.querySelectorAll('.scroll');
+      var i = 0, length = target.length;
+      for( i; i< length; i++){
+        var pos = window.pageYOffset * target[i].dataset.rate;
+
+        if(target[i].dataset.direction === 'vertical'){
+          target[i].style.transform = 'translate3d(0px '+pos+'px, 0px)';
+          console.log(target[i].style.transform);
+        } else{
+          var posX = window.pageYOffset * target[i].dataset.ratex;
+          var posY = window.pageYOffset * target[i].dataset.ratey;
+          
+          target[i].style.transform = 'translate3d('+posX+'px, '+posY+'px, 0px)';
+
+        }
+      }
+    });
+
+    
+  </script>
+</body>
+</html>

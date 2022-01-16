@@ -1,0 +1,58 @@
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  height: 500vh;
+}
+
+.line-container {
+  position: fixed;
+  top: 0%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  overflow: hidden;
+}
+
+.line-container svg {
+  display: inline-block;
+  height: 100%;
+}
+
+section {
+  height: 100vh;
+  display: -ms-grid;
+  display: grid;
+  place-content: center;
+  font-family: 'Garamond';
+  font-size: 4em;
+}
+
+.one {
+  background: url("../image/ocean.jpeg") no-repeat;
+  background-size: cover;
+}
+
+.two {
+  font-size: 6em;
+  position: relative;
+  overflow: hidden;
+}
+
+.two p {
+  position: absolute;
+  z-index: -1;
+  color: #c8c8c8;
+  top: 70%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  white-space: nowrap;
+  font-size: 2em;
+}
+/*# sourceMappingURL=style.css.map */
